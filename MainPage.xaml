@@ -1,0 +1,47 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="P3.MainPage" Title="Главная">
+    <Grid Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <BoxView Color="#00C618" HeightRequest="100" Grid.Row="0" />
+        <Image Source="logo.png" HorizontalOptions="Center" MaximumHeightRequest="90" Grid.Row="0" />
+
+        <StackLayout Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+            <Button Text="Перейти в профиль" Clicked="OnProfileButtonClicked" FontSize="24" Margin="0,20,0,0" BackgroundColor="#00C618"/>
+        </StackLayout>
+
+        <ScrollView VerticalOptions="FillAndExpand" Grid.Row="2" Margin="0,10">
+            <CollectionView x:Name="ProductsCollectionView" SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="5" CornerRadius="10" HasShadow="True">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="100" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding ImageUrl}" HeightRequest="100" Aspect="AspectFill" Grid.Column="0" VerticalOptions="Center" />
+
+                                <StackLayout Grid.Column="1" VerticalOptions="Center" Margin="5.0">
+                                    <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" />
+                                    <Label Text="{Binding Price, StringFormat='Цена: {0:C}'}" FontSize="14" LineHeight="1.5" />
+                                </StackLayout>
+
+                                <StackLayout Grid.Column="2" VerticalOptions="Center">
+                                    <Button Text="Заказать" Clicked="OnOrderButtonClicked" BackgroundColor="#00C618"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+
+        <Button Text="Перейти в корзину" Clicked="OnCartButtonClicked" VerticalOptions="End" HorizontalOptions="Center" FontSize="24" Margin="0,10" Grid.Row="3" BackgroundColor="#00C618"/>
+    </Grid>
+</ContentPage>

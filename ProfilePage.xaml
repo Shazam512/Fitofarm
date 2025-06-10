@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="P3.ProfilePage" 
+             Title="ProfilePage">
+    <Grid Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <BoxView Color="#00C618" HeightRequest="100" Grid.Row="0" />
+        <Image Source="logo.png" HorizontalOptions="Center" MaximumHeightRequest="90" Grid.Row="0" />
+
+        <Label x:Name="UserLoginLabel" FontSize="24" HorizontalOptions="Center" Grid.Row="1" />
+
+        <Grid Padding="10" Margin="0,30,0,0" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Text="Главная" 
+                    Clicked="OnMainPageButtonClicked" 
+                    HorizontalOptions="FillAndExpand" 
+                    FontSize="20" 
+                    BackgroundColor="#00C618" 
+                    Padding="10" 
+                    Grid.Column="0" />
+
+            <Button Text="Выход" 
+                    Clicked="OnLogoutButtonClicked" 
+                    HorizontalOptions="FillAndExpand" 
+                    FontSize="20" 
+                    BackgroundColor="#FF3B30" 
+                    Padding="10" 
+                    Grid.Column="1" />
+        </Grid>
+
+        <StackLayout Padding="10" Grid.Row="2">
+            <Label Text="Заказ в пути" FontSize="24" HorizontalOptions="Center" />
+            <ListView x:Name="InTransitOrdersListView" ItemsSource="{Binding InTransitOrders}" SeparatorVisibility="Default" RowHeight="80">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Border Padding="0" Margin="5" Stroke="Gray" StrokeThickness="1">
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="{Binding Code}" FontSize="18" HorizontalOptions="Start" Grid.Column="0" VerticalOptions="Center" />
+                                    <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Label Text="{Binding PickupLocation}" FontSize="16" />
+                                        <Label Text="{Binding PaymentMethod}" FontSize="16" />
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center">
+                                        <Label Text="{Binding TotalPrice, StringFormat='Цена: {0:C}'}" FontSize="14" />
+                                        <Button Text="Удалить заказ" Clicked="OnDeleteOrderClicked" CommandParameter="{Binding .}" FontSize="14" BackgroundColor="#FF3B30"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Border>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Label Text="Заказ получен" FontSize="24" HorizontalOptions="Center" />
+            <ListView x:Name="ReceivedOrdersListView" ItemsSource="{Binding ReceivedOrders}" SeparatorVisibility="Default" RowHeight="80">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Border Padding="0" Margin="5" Stroke="Gray" StrokeThickness="1">
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="{Binding Code}" FontSize="18" HorizontalOptions="Start" Grid.Column="0" VerticalOptions="Center" />
+                                    <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Label Text="{Binding PickupLocation}" FontSize="16" />
+                                        <Label Text="{Binding PaymentMethod}" FontSize="16" />
+                                    </StackLayout>
+                                    <Label Text="{Binding TotalPrice, StringFormat='Цена: {0:C}'}" Grid.Column="2" HorizontalOptions="End" FontSize="16" VerticalOptions="Center" />
+                                </Grid>
+                            </Border>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Label Text="Заказ удален" FontSize="24" HorizontalOptions="Center" />
+            <ListView x:Name="DeletedOrdersListView" ItemsSource="{Binding DeletedOrders}" SeparatorVisibility="Default" RowHeight="80">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Border Padding="0" Margin="5" BackgroundColor="LightGray" Stroke="LightGray" StrokeThickness="1">
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="{Binding Code}" FontSize="18" HorizontalOptions="Start" Grid.Column="0" VerticalOptions="Center" />
+                                    <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Label Text="{Binding PickupLocation}" FontSize="16" />
+                                        <Label Text="{Binding PaymentMethod}" FontSize="16" />
+                                    </StackLayout>
+                                    <Label Text="{Binding TotalPrice, StringFormat='Цена: {0:C}'}" Grid.Column="2" HorizontalOptions="End" FontSize="16" VerticalOptions="Center" />
+                                </Grid>
+                            </Border>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Удалить все заказы" Clicked="OnDeleteAllOrdersClicked" HorizontalOptions="Center" FontSize="20" BackgroundColor="Red"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>
