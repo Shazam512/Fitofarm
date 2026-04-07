@@ -15,6 +15,7 @@ namespace P3
             cart = new ObservableCollection<Product>();
         }
 
+        // Метод для загрузки списка продуктов
         private void LoadProducts()
         {
             products = new ObservableCollection<Product>
@@ -34,6 +35,7 @@ namespace P3
             };
         }
 
+        // Обработчик нажатия на кнопку "Заказать" у продукта
         private async void OnOrderButtonClicked(object sender, EventArgs e)
         {
             var button = sender as Button;

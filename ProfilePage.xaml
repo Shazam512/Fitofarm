@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="P3.ProfilePage" 
              Title="ProfilePage">
+    <!-- Основная сетка страницы с отступом -->
     <Grid Padding="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -15,6 +16,7 @@
 
         <Label x:Name="UserLoginLabel" FontSize="24" HorizontalOptions="Center" Grid.Row="1" />
 
+        <!-- Сетка с кнопками "Главная" и "Выход" -->
         <Grid Padding="10" Margin="0,30,0,0" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -38,12 +40,14 @@
                     Grid.Column="1" />
         </Grid>
 
+        <!-- Основной контент: список заказов -->
         <StackLayout Padding="10" Grid.Row="2">
             <Label Text="Заказ в пути" FontSize="24" HorizontalOptions="Center" />
             <ListView x:Name="InTransitOrdersListView" ItemsSource="{Binding InTransitOrders}" SeparatorVisibility="Default" RowHeight="80">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <!-- Оформление каждого заказа с рамкой -->
                             <Border Padding="0" Margin="5" Stroke="Gray" StrokeThickness="1">
                                 <Grid Padding="10">
                                     <Grid.ColumnDefinitions>
@@ -53,6 +57,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Label Text="{Binding Code}" FontSize="18" HorizontalOptions="Start" Grid.Column="0" VerticalOptions="Center" />
+                                    <!-- Информация о месте получения и способе оплаты -->
                                     <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
                                         <Label Text="{Binding PickupLocation}" FontSize="16" />
                                         <Label Text="{Binding PaymentMethod}" FontSize="16" />
@@ -68,6 +73,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
+            <!-- Заголовок для полученных заказов -->
             <Label Text="Заказ получен" FontSize="24" HorizontalOptions="Center" />
             <ListView x:Name="ReceivedOrdersListView" ItemsSource="{Binding ReceivedOrders}" SeparatorVisibility="Default" RowHeight="80">
                 <ListView.ItemTemplate>
@@ -93,7 +99,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
+            
+            <!-- Заголовок для удаленных заказов -->
             <Label Text="Заказ удален" FontSize="24" HorizontalOptions="Center" />
             <ListView x:Name="DeletedOrdersListView" ItemsSource="{Binding DeletedOrders}" SeparatorVisibility="Default" RowHeight="80">
                 <ListView.ItemTemplate>
@@ -108,6 +115,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Label Text="{Binding Code}" FontSize="18" HorizontalOptions="Start" Grid.Column="0" VerticalOptions="Center" />
+                                    <!-- Место получения и способ оплаты -->
                                     <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
                                         <Label Text="{Binding PickupLocation}" FontSize="16" />
                                         <Label Text="{Binding PaymentMethod}" FontSize="16" />

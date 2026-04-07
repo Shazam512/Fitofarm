@@ -19,6 +19,7 @@ namespace P3
             TotalPriceLabel.Text = $"Итого: {totalPrice:C}";
         }
 
+        // Обработчик нажатия на кнопку подтверждения заказа
         public async void OnConfirmOrderClicked(object sender, EventArgs e)
         {
             var selectedPickupLocation = PickupLocationPicker.SelectedItem?.ToString();
@@ -35,6 +36,7 @@ namespace P3
                 return;
             }
 
+            // Создаем новый объект заказа с заполненными данными
             var order = new Order
             {
                 PickupLocation = selectedPickupLocation,
@@ -58,6 +60,7 @@ namespace P3
             return cart.Count > 0 ? cart[0].Name : "Неизвестный товар";
         }
 
+        // Метод генерации случайного шестизначного кода заказа
         public string GenerateOrderCode()
         {
             var random = new Random();
