@@ -1,4 +1,5 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="P3.MainPage" Title="Главная">
+    <!-- Основная сетка для расположения элементов страницы -->
     <Grid Padding="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -14,6 +15,7 @@
             <Button Text="Перейти в профиль" Clicked="OnProfileButtonClicked" FontSize="24" Margin="0,20,0,0" BackgroundColor="#00C618"/>
         </StackLayout>
 
+        <!-- Прокручиваемый список товаров -->
         <ScrollView VerticalOptions="FillAndExpand" Grid.Row="2" Margin="0,10">
             <CollectionView x:Name="ProductsCollectionView" SelectionMode="Single">
                 <CollectionView.ItemTemplate>

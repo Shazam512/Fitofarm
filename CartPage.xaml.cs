@@ -17,14 +17,14 @@ namespace P3
             UpdateTotalPrice();
         }
 
-
+        // Метод сохранения текущего состояния корзины в локальное хранилище
         public void SaveCart()
         {
-            // Сохраняем корзину в Preferences
             var cartJson = JsonConvert.SerializeObject(cart);
             Preferences.Set("Cart", cartJson);
         }
 
+        // Обработчик события нажатия на кнопку уменьшения количества товара
         public void OnDecreaseQuantityClicked(object sender, EventArgs e)
         {
             var button = sender as Button;
@@ -43,6 +43,7 @@ namespace P3
             UpdateTotalPrice();
         }
 
+        // Обработчик события нажатия на кнопку увеличения количества товара
         public void OnIncreaseQuantityClicked(object sender, EventArgs e)
         {
             var button = sender as Button;
@@ -52,12 +53,13 @@ namespace P3
             UpdateTotalPrice();
         }
 
+        // Обработчик события нажатия на кнопку удаления товара из корзины
         public void OnRemoveButtonClicked(object sender, EventArgs e)
         {
             var button = sender as Button;
             var product = button.BindingContext as Product;
             cart.Remove(product);
-            SaveCart(); // Сохраняем корзину после изменения
+            SaveCart();
             UpdateTotalPrice();
         }
 
@@ -69,14 +71,14 @@ namespace P3
             {
                 totalPrice += product.Price * product.Quantity;
             }
-            TotalPriceLabel.Text = $"Итого: {totalPrice},00 ₽"; // Убедитесь, что это свойство доступно
+            TotalPriceLabel.Text = $"Итого: {totalPrice},00 ₽";
         }
 
+        // Обработчик нажатия на кнопку оформления заказа
         public async void OnCheckoutButtonClicked(object sender, EventArgs e)
         {
             var totalPrice = cart.Sum(p => p.Price * p.Quantity);
 
-            // Получаем текущий экземпляр ProfilePage из стека навигации
             var profilePage = Application.Current.MainPage.Navigation.NavigationStack
                 .OfType<ProfilePage>()
                 .FirstOrDefault();

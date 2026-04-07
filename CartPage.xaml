@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="P3.CartPage"
              Title="Корзина">
+    <!-- Основная сетка разметки с отступами и промежутками между строками -->
     <Grid Padding="10" RowSpacing="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -34,7 +35,7 @@
                     HorizontalOptions="FillAndExpand"
                     Grid.Column="1" />
         </Grid>
-
+        <!-- Прокручиваемая область для отображения списка товаров в корзине -->
         <ScrollView Grid.Row="2" VerticalOptions="FillAndExpand" Margin="0,10,0,0">
             <CollectionView x:Name="CartCollectionView" SelectionMode="Single">
                 <CollectionView.ItemTemplate>
@@ -49,6 +50,7 @@
 
                                 <Image Source="{Binding ImageUrl}" HeightRequest="100" Aspect="AspectFill" Grid.Column="0" VerticalOptions="Center" />
 
+                                <!-- Название и цена товара -->
                                 <StackLayout Grid.Column="1" VerticalOptions="Center" Margin="10,0">
                                     <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" />
                                     <Label Text="{Binding Price, StringFormat='Цена: {0:C}'}" FontSize="14" LineHeight="1.5" TextColor="Gray" />

@@ -3,6 +3,7 @@
              x:Class="P3.RegistrationPage"
              Title="Регистрация">
     <ScrollView>
+        <!-- Основная сетка с отступом вокруг содержимого -->
         <Grid Padding="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -12,6 +13,7 @@
             <BoxView Color="#00C618" HeightRequest="100" Grid.Row="0" />
             <Image Source="logo.png" HorizontalOptions="Center" MaximumHeightRequest="90" Grid.Row="0" />
 
+            <!-- Контейнер для формы регистрации, центрируется по горизонтали -->
             <Grid Grid.Row="1" HorizontalOptions="Center" Padding="20">
                 <Frame Padding="20" CornerRadius="10" HasShadow="True" VerticalOptions="Center" HorizontalOptions="Center">
                     <StackLayout Spacing="15">

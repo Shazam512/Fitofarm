@@ -27,7 +27,7 @@ namespace P3
 
         private void LoadOrders()
         {
-            // Загрузка заказов из хранилища (например, Preferences или файл)
+            // Загрузка заказов из хранилища
             var savedOrdersJson = Preferences.Get("Orders", string.Empty);
             if (!string.IsNullOrEmpty(savedOrdersJson))
             {
@@ -38,7 +38,7 @@ namespace P3
                     {
                         deletedOrders.Add(order);
                     }
-                    else if (order.TotalPrice > 0) // Предполагаем, что заказы с ценой больше 0 в пути
+                    else if (order.TotalPrice > 0)
                     {
                         InTransitOrders.Add(order);
                     }

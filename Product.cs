@@ -1,3 +1,4 @@
+//  ласс, описывающий продукт в приложении
 public class Product
 {
     public int Id { get; set; }
@@ -8,6 +9,7 @@ public class Product
     public int Quantity { get; set; } = 1;
 }
 
+//  ласс, описывающий заказ пользовател€
 public class Order
 {
     public int Id { get; set; }
@@ -17,9 +19,10 @@ public class Order
     public decimal TotalPrice { get; set; }
     public string PaymentMethod { get; set; }
     public bool IsCancelled { get; set; }
-    public string UserLogin { get; set; } // Link to the user who made the order
+    public string UserLogin { get; set; }
 }
 
+//  ласс, описывающий данные регистрации пользовател€
 public class Register
 {
     public int Id { get; set; }

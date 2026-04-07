@@ -2,7 +2,6 @@ using Microsoft.Maui.Controls;
 using System;
 using System.Linq;
 
-// Добавьте пространство имен, где объявлен AdminPage
 using P3;
 
 namespace P3;
@@ -26,6 +25,7 @@ public partial class RegistrationPage : ContentPage
         entry?.Focus();
     }
 
+    // Обработчик нажатия кнопки регистрации
     private async void OnRegisterClicked(object sender, EventArgs e)
     {
         var login = LoginEntry.Text;
@@ -50,6 +50,7 @@ public partial class RegistrationPage : ContentPage
             return;
         }
 
+        // Сохранение данных пользователя в локальные настройки приложения
         Preferences.Set("User  Login", login);
         Preferences.Set("User  Phone", phone);
         Preferences.Set("User  Password", password);
@@ -59,11 +60,13 @@ public partial class RegistrationPage : ContentPage
         await Navigation.PushAsync(new ProfilePage());
     }
 
+    // Метод проверки валидности номера телефона
     public bool IsValidPhoneNumber(string phone)
     {
         return phone.StartsWith("+7") && phone.Length == 12 && phone.Skip(2).All(char.IsDigit);
     }
 
+    // Метод проверки сложности пароля
     public bool IsValidPassword(string password)
     {
         return password.Length >= 8 &&
